@@ -1,3 +1,551 @@
-img {
-    max-width: 100px;
+body,
+p,
+h1,
+ul,
+li,
+blockquote {
+    padding: 0px;
+    margin: 0px;
 }
+
+body {
+    font-family: "Vollkorn", Georgia, serif;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* GRID GERAL */
+
+.estrutura {
+    display: grid;
+    grid-template-columns: minmax(160px, 1fr) 3fr 300px;
+    grid-template-areas:
+        "header header header"
+        "sidenav content anuncios"
+        "footer footer footer";
+    height: 100vh;
+}
+
+footer {
+    grid-area: footer;
+    width: 100%;
+}
+
+
+@media (max-width: 1200px) {
+    .estrutura {
+        grid-template-areas:
+            "header header header"
+            "sidenav content content"
+            "sidenav anuncios anuncios"
+            "footer footer footer";
+    }
+}
+
+@media (max-width: 760px) {
+    .estrutura {
+        grid-template-areas:
+            "header"
+            "sidenav"
+            "content"
+            "anuncios"
+            "footer";
+    }
+}
+
+/* HEADER */
+
+.header {
+    grid-area: header;
+    background: linear-gradient(135deg, #8844ee, #b07dfb);
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+}
+
+.logo {
+    max-width: 200px;
+}
+
+.header nav ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header nav a {
+    display: block;
+    padding: 10px;
+    color: white;
+    font-size: 1.125em;
+    background: rgba(0, 0, 0, .1);
+    border-radius: 5px;
+    transition: 0.1s;
+}
+
+.header nav a:hover {
+    background: rgba(0, 0, 0, .5);
+}
+
+.header li+li {
+    margin-left: 30px;
+}
+
+/* SIDENAV */
+
+.sidenav {
+    grid-area: sidenav;
+    background: #fafbfc;
+    padding: 30px;
+}
+
+.sidenav li a {
+    display: block;
+    min-width: 60px;
+    max-width: 100px;
+    margin: 0 auto 30px auto;
+    background: white;
+    padding: 20px 30px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, 0.15);
+    transition: 0.1s ease-out;
+}
+
+.sidenav li a:hover {
+    background: #b07dfb;
+}
+
+/* CONTENT */
+
+.content {
+    grid-area: content;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+}
+
+.col-wide {
+    grid-column: 1/-1;
+}
+
+.imagem-1 {
+    grid-row: span 2;
+    align-self: end;
+}
+
+.imagem-2 {
+    align-self: end;
+}
+
+/*ESTILOS CONTENT */
+
+p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    letter-spacing: -0.005em;
+    color: rgba(0, 0, 0, .7);
+}
+
+.informacoes p+p {
+    margin-top: 30px;
+}
+
+/* TITULO */
+
+.titulo {
+    color: #b07dfb;
+}
+
+.titulo h1 {
+    font-size: 3.75em;
+    line-height: 1;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #b07dfb;
+}
+
+.titulo span {
+    font-size: 1.2em;
+    font-style: italic;
+}
+
+/* CARACTERISTICAS */
+
+.caracteristicas {
+    display: flex;
+    align-items: flex-start;
+}
+
+.caracteristicas>div {
+    width: 80px;
+    text-align: center;
+    background: linear-gradient(135deg, #8844ee, #b07dfb);
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, 0.15);
+    position: relative;
+}
+
+.caracteristicas>div:first-child {
+    margin-right: 30px;
+}
+
+.caracteristicas span {
+    display: block;
+    color: #b07dfb;
+}
+
+.numero {
+    color: #b07dfb;
+    font-size: 3em;
+    line-height: 1;
+    margin: 10px auto;
+}
+
+.rotulo {
+    background: white;
+    border-radius: 0 0 5px 5px;
+    padding: 5px 0;
+    position: relative;
+    top: 2px
+}
+
+.destaque {
+    font-size: 1em;
+    color: #b07dfb;
+    max-width: 16em;
+}
+
+.citacao,
+.atributos {
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, 0.15);
+    background: linear-gradient(135deg, #8844ee, #b07dfb);
+}
+
+.citacao p {
+    color: white;
+    font-size: 1.5em;
+    font-style: italic;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* ANIMAÇÃO */
+
+.caracteristicas {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    animation: animacaoCaracteristicas .3s forwards;
+}
+
+@keyframes animacaoCaracteristicas {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+/* ANIMAÇÃO */
+
+.imagem-1 {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    animation: animacaoImagem1 .3s forwards;
+}
+
+@keyframes animacaoImagem1 {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+.imagem-2 {
+    opacity: 0;
+    transform: translate3d(20px, 0, 0);
+    animation: animacaoImagem2 .3s forwards;
+}
+
+@keyframes animacaoImagem2 {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+/* ANIMAÇÃO */
+
+.col-wide {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    animation: animacaoColWide .3s forwards;
+}
+
+@keyframes animacaoColWide {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+/* ANIMAÇÃO */
+
+.titulo {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    animation: animacaoTitulo .3s forwards;
+}
+
+@keyframes animacaoTitulo {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+/* ANIMAÇÃO */
+
+.caracteristicas>div {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    animation: animacaoCaracteristicas .3s forwards;
+}
+
+@keyframes animacaoCaracteristicas {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+/* ANIMAÇÃO */
+
+.informacoes {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    animation: animacaoInformacoes .3s forwards;
+}
+
+@keyframes animacaoInformacoes {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+/* ANIMAÇÃO */
+
+.anuncios {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    animation: animacaoAnuncios .3s forwards;
+}
+
+@keyframes animacaoAnuncios {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+/* ANIMAÇÃO */
+
+.footer {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    animation: animacaoFooter .3s forwards;
+}
+
+@keyframes animacaoFooter {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+/* ANIMAÇÃO */
+
+.sidenav {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    animation: animacaoSidenav .3s forwards;
+}
+
+@keyframes animacaoSidenav {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+/* ANIMAÇÃO */
+
+.header {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    animation: animacaoHeader .3s forwards;
+}
+
+@keyframes animacaoHeader {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+/* ANIMAÇÃO */
+
+body {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    animation: animacaoBody .3s forwards;
+}
+
+@keyframes animacaoBody {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+/* ANIMAÇÃO */
+
+.container {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    animation: animacaoContainer .3s forwards;
+}
+
+@keyframes animacaoContainer {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+/* ANIMAÇÃO */
+
+html {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    animation: animacaoHtml .3s forwards;
+}
+
+@keyframes animacaoHtml {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+/* ANIMAÇÃO */
+
+.estrutura {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    animation: animacaoEstrutura .3s forwards;
+}
+
+@keyframes animacaoEstrutura {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+/* ANIMAÇÃO */
+
+.col-1-3 {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    animation: animacaoCol1 .3s forwards;
+}
+
+@keyframes animacaoCol1 {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+/* ANIMAÇÃO */
+
+.col-2-3 {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    animation: animacaoCol2 .3s forwards;
+}
+
+@keyframes animacaoCol2 {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+/* ANIMAÇÃO */
+
+.col-1-2 {
+    opacity: 0;
+    transform: translate3d(-20px, 0, 0);
+    animation: animacaoCol3 .3s forwards;
+}
+
+@keyframes animacaoCol3 {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+/* ANUNCIOS */
+
+.anuncios {
+    grid-area: anuncios;
+    background: #fafbfc;
+    display: grid;
+    align-content: start;
+    padding: 30px;
+    gap: 30px;
+    overflow: hidden;
+}
+
+.anuncio-item {
+    width: 250px;
+}
+
+.anuncio-item img {
+    width: 100%;
+}
+
+/* FOOTER */
+
+.footer {
+    grid-area: footer;
+    background: linear-gradient(135deg, #8844ee, #b07dfb);
+}
+
+.footer p {
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+/* RESPONSIVO */
